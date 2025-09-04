@@ -65,7 +65,7 @@ const AppContent = () => {
         <Route
           path="/apply"
           element={
-            <ProtectedRoute isAllowed={isSignedIn}>
+            <ProtectedRoute isAllowed={isSignedIn || isAgentSignedIn}>
               <MultiStepForm />
             </ProtectedRoute>
           }

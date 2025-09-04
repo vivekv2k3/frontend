@@ -1,10 +1,11 @@
-
-// src/Customers.js
+// src/sam/Customers.js
 import React, { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { fmtMoney, initials } from './helpers.js';
 
 const Customers = ({ customers, onShowCustomerModal, onShowConfirmModal, onCustomerAction }) => {
   const [filters, setFilters] = useState({ q: '', status: 'all', limit: 'any' });
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -29,9 +30,14 @@ const Customers = ({ customers, onShowCustomerModal, onShowConfirmModal, onCusto
         () => onCustomerAction.delete(c.id)
     );
   };
+  
+  // New handler for the "Add Customer" button
+  const handleAddCustomer = () => {
+    navigate('/apply');
+  };
 
   return (
-    <div classname="agent-portal">
+    <div className="agent-portal">
     <div className="fade">
       <div className="topbar">
         <div>
@@ -39,7 +45,8 @@ const Customers = ({ customers, onShowCustomerModal, onShowConfirmModal, onCusto
           <div className="subtle">View and manage customers. Click "Detail" to open a card.</div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <button className="btn" onClick={() => onShowCustomerModal(null)}>Add Customer</button>
+          {/* Updated onClick handler */}
+          <button className="btn" onClick={handleAddCustomer}>Add Customer</button>
           <div className="f-input" style={{ minWidth: '240px' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>
             <input name="q" value={filters.q} onChange={handleFilterChange} placeholder="Search customers..." />
