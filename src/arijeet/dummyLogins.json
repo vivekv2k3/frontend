@@ -1,7 +1,7 @@
 {
   "customer": { "username": "demo@example.com", "password": "12345" },
   "agents": [
-    { "username": "12345", "password": "12345" },
+    { "username": "agent1", "password": "12345" },
     { "username": "agent2", "password": "54321" }
   ]
 }
