@@ -29,31 +29,55 @@ const Login = ({ switchView, handleCustomerLoginSuccess, handleAgentLoginSuccess
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    const { username, password } = formData;
-    if (
-      username === logins.customer.username &&
-      password === logins.customer.password
-    ) {
-      handleCustomerLoginSuccess();
-      //switchView("customer-dashboard");
-    } else if (
-      username === logins.agent.username &&
-      password === logins.agent.password
-    ) {
-      handleAgentLoginSuccess();
-      navigate('/agent/dashboard');
-    } else {
-      setErrors({ form: "Invalid username or password." });
+  const validationErrors = validateForm();
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    return;
+  }
+
+  const { username, password } = formData;
+
+  // ✅ Make sure logins exists
+  if (!logins) {
+    setErrors({ form: "Login data not loaded yet." });
+    return;
+  }
+
+  // ✅ Customer login check
+  if (
+    username === logins.customer?.username &&
+    password === logins.customer?.password
+  ) {
+    handleCustomerLoginSuccess();
+    switchView("customer-dashboard");
+    return;
+  }
+
+  // ✅ Agent login check without using .find()
+  let isAgent = false;
+  if (Array.isArray(logins.agents)) {
+    for (let i = 0; i < logins.agents.length; i++) {
+      const agent = logins.agents[i];
+      if (agent.username === username && agent.password === password) {
+        isAgent = true;
+        break;
+      }
     }
-  };
+  }
+
+  if (isAgent) {
+    handleAgentLoginSuccess();
+    navigate("/agent/dashboard");
+    return;
+  }
+
+  // ❌ If nothing matches
+  setErrors({ form: "Invalid username or password." });
+};
+
 
   return (
     <div className="auth-form-container">
