@@ -7,6 +7,142 @@ import ultimatumCard from './assets/UltimateCC.png';
 import platinumCard from './assets/ParisPlatCC.png';
 import atmCardImage from './assets/atmcard-prasanth.png';
 
+// Navbar Component
+// const StandardCharteredNavbar = ({ toggleTheme, currentTheme }) => {
+//   const navbarWrapperStyle = {
+//     position: "fixed",
+//     top: 0,
+//     left: 0,
+//     width: "100%",
+//     height: "110px",
+//     background: "linear-gradient(90deg, #02101a 10%, #071226 90%)",
+//     display: "flex",
+//     alignItems: "center",
+//     justifyContent: "center",
+//     zIndex: 1000,
+//   };
+
+//   const navbarStyle = {
+//     width: "70%",
+//     minWidth: "370px",
+//     maxWidth: "1200px",
+//     height: "68px",
+//     background: "rgba(255,255,255,0.92)",
+//     borderRadius: "34px",
+//     display: "flex",
+//     alignItems: "center",
+//     justifyContent: "space-between",
+//     padding: "0 38px",
+//     boxSizing: "border-box",
+//     boxShadow: "0 6px 32px rgba(70,130,170,0.18)",
+//   };
+
+//   const logoContainerStyle = {
+//     display: "flex",
+//     alignItems: "center",
+//   };
+
+//   const logoStyle = {
+//     height: "50px",
+//     objectFit: "contain",
+//     cursor: "pointer",
+//   };
+
+//   const navItemsStyle = {
+//     display: "flex",
+//     gap: "32px",
+//     alignItems: "center",
+//   };
+
+//   const navLinkStyle = {
+//     color: "#174E7C",
+//     fontWeight: 600,
+//     fontSize: "18px",
+//     textDecoration: "none",
+//     cursor: "pointer",
+//     borderRadius: "14px",
+//     padding: "9px 21px",
+//     transition: "background 0.2s, color 0.2s",
+//   };
+
+//   const themeToggleStyle = {
+//     background: "transparent",
+//     border: "none",
+//     cursor: "pointer",
+//     fontSize: "24px",
+//     padding: "5px",
+//     borderRadius: "50%",
+//     width: "40px",
+//     height: "40px",
+//     display: "flex",
+//     alignItems: "center",
+//     justifyContent: "center",
+//     transition: "all 0.3s ease",
+//   };
+
+//   // Add hover effect with JavaScript since inline styles don't support pseudo-classes
+//   const handleMouseEnter = (e) => {
+//     e.target.style.background = "rgba(23, 78, 124, 0.1)";
+//   };
+  
+//   const handleMouseLeave = (e) => {
+//     e.target.style.background = "transparent";
+//   };
+
+//   return (
+//     <div style={navbarWrapperStyle}>
+//       <nav style={navbarStyle}>
+//         <div style={logoContainerStyle}>
+//           <img
+//             src="https://assets.bbhub.io/marketing/sites/14/Standard-Chartered_logo-for-website.png"
+//             alt="Standard Chartered Logo"
+//             style={logoStyle}
+//           />
+//         </div>
+//         <div style={navItemsStyle}>
+//           <a 
+//             href="#homepage" 
+//             style={navLinkStyle}
+//             onMouseEnter={handleMouseEnter}
+//             onMouseLeave={handleMouseLeave}
+//           >Homepage</a>
+//           {/* <a 
+//             href="#creditcard" 
+//             style={navLinkStyle}
+//             onMouseEnter={handleMouseEnter}
+//             onMouseLeave={handleMouseLeave}
+//           >Credit Card</a> */}
+//           <a 
+//             href="#profile" 
+//             style={navLinkStyle}
+//             onMouseEnter={handleMouseEnter}
+//             onMouseLeave={handleMouseLeave}
+//           >Profile Page</a>
+//           <a 
+//             href="#help" 
+//             style={navLinkStyle}
+//             onMouseEnter={handleMouseEnter}
+//             onMouseLeave={handleMouseLeave}
+//           >Help</a>
+//           <button 
+//             onClick={toggleTheme}
+//             style={themeToggleStyle}
+//             title={`Switch to ${currentTheme === 'dark' ? 'light' : 'dark'} mode`}
+//           >
+//             {currentTheme === 'dark' ? '☀️' : '🌙'}
+//           </button>
+//           <a 
+//             href="#signout" 
+//             style={navLinkStyle}
+//             onMouseEnter={handleMouseEnter}
+//             onMouseLeave={handleMouseLeave}
+//           >Sign Out</a>
+//         </div>
+//       </nav>
+//     </div>
+//   );
+// };
+
 // ProgressBar Component
 function ProgressBar({ currentStep, totalSteps }) {
   const progressPercentage = (currentStep / totalSteps) * 100;
@@ -52,14 +188,6 @@ function ProgressBar({ currentStep, totalSteps }) {
 }
 
 // Step1 Component
-const indianStates = [
-  "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", 
-  "Chandigarh", "Chhattisgarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Goa", 
-  "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", 
-  "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", 
-  "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim", 
-  "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
-];
 function Step1({ onNext, defaultData }) {
   const [data, setData] = useState({
     fullName: defaultData.fullName || "",
@@ -85,45 +213,34 @@ function Step1({ onNext, defaultData }) {
     switch (name) {
       case "fullName":
         if (!value.trim()) error = "Full name is required";
-        else if (!/^[a-zA-Z ]+$/.test(value))
-          error = "Name should contain only letters";
+        else if (!/^[a-zA-Z ]+$/.test(value)) error = "Name should contain only letters";
         break;
       case "dob":
-        if (!value) {
-          error = "Date of birth is required";
-        } else {
+        if (!value) error = "Date of birth is required";
+        else {
           const dob = new Date(value);
           const today = new Date();
-          today.setHours(0, 0, 0, 0); // Normalize today's date
-
-          // 1. First, check if the DOB is in the future
-          if (dob > today) {
-            error = "Date of birth cannot be in the future.";
-          } else {
-            // 2. If it's a past date, check if they are 18
-            const eighteenYearsAgo = new Date();
-            eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
-
-            if (dob > eighteenYearsAgo) {
-              error = "You must be at least 18 years old.";
-            }
+          const age = today.getFullYear() - dob.getFullYear();
+          const monthDiff = today.getMonth() - dob.getMonth();
+          
+          if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+            error = "Invalid date of birth";
           }
+          
+          if (age < 18) error = "You must be at least 18 years old";
         }
         break;
       case "parentName":
         if (!value.trim()) error = "Parent name is required";
-        else if (!/^[a-zA-Z ]+$/.test(value))
-          error = "Parent name should contain only letters";
+        else if (!/^[a-zA-Z ]+$/.test(value)) error = "Parent name should contain only letters";
         break;
       case "email":
         if (!value) error = "Email is required";
-        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
-          error = "Invalid email format";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) error = "Invalid email format";
         break;
       case "mobile":
         if (!value) error = "Mobile number is required";
-        else if (!/^[0-9]{10}$/.test(value))
-          error = "Invalid mobile number (10 digits required)";
+        else if (!/^[0-9]{10}$/.test(value)) error = "Invalid mobile number (10 digits required)";
         break;
       case "pinCode":
         if (!value) error = "Pincode is required";
@@ -133,20 +250,19 @@ function Step1({ onNext, defaultData }) {
       case "maritalStatus":
         if (!value) error = "This field is required";
         break;
-
+      
       case "state":
       case "currentCity":
-        if (!value.trim()) {
-          error = "This field is required";
-        } else if (/[0-9]/.test(value)) {
-          error = "City name cannot contain numbers";
-        } else if (!/^[a-zA-Z\s\-']+$/.test(value)) {
-          error = "Only letters, spaces, hyphens and apostrophes are allowed";
-        }
-        break;
+      if (!value.trim()) {
+        error = "This field is required";
+      } else if (/[0-9]/.test(value)) {
+        error = "City name cannot contain numbers";
+      } else if (!/^[a-zA-Z\s\-']+$/.test(value)) {
+        error = "Only letters, spaces, hyphens and apostrophes are allowed";
+      }
+      break;
       case "photo":
-        if (value && value.size > 2 * 1024 * 1024)
-          error = "File size must be less than 2MB";
+        if (value && value.size > 2 * 1024 * 1024) error = "File size must be less than 2MB";
         break;
       default:
         break;
@@ -216,252 +332,193 @@ function Step1({ onNext, defaultData }) {
 
   return (
     <div className="multi-step-form">
-      <form className="card wide-form-card" onSubmit={handleSubmit}>
-        <h2>Customer Information Form</h2>
-
-        <div className="form-section">
-          <div className="form-row">
-            <div className="form-field">
-              <label>Full Name</label>
-              <input
-                name="fullName"
-                value={data.fullName}
-                onChange={handleChange}
-                className={
-                  errors.fullName ? "error glitter-border" : "glitter-border"
-                }
-              />
-              {errors.fullName && (
-                <span className="error-message">{errors.fullName}</span>
-              )}
-            </div>
-            <div className="form-field">
-              <label>Date of Birth</label>
-              <input
-                type="date"
-                name="dob"
-                value={data.dob}
-                onChange={handleChange}
-                // className={errors.dob ? "error glitter-border" : "glitter-border"}
-              />
-              {errors.dob && (
-                <span className="error-message">{errors.dob}</span>
-              )}
-            </div>
-          </div>
-
-          <div className="form-row">
-            <div className="form-field">
-              <label>Gender</label>
-              <select
-                className={`custom-dropdown glitter-border ${
-                  errors.gender ? "error" : ""
-                }`}
-                name="gender"
-                value={data.gender}
-                onChange={handleChange}
-              >
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-              {errors.gender && (
-                <span className="error-message">{errors.gender}</span>
-              )}
-            </div>
-            <div className="form-field">
-              <label>Father's / Mother's Name</label>
-              <input
-                name="parentName"
-                value={data.parentName}
-                onChange={handleChange}
-                className={
-                  errors.parentName ? "error glitter-border" : "glitter-border"
-                }
-              />
-              {errors.parentName && (
-                <span className="error-message">{errors.parentName}</span>
-              )}
-            </div>
-          </div>
-
-          <div className="form-row">
-            <div className="form-field">
-              <label>Marital Status</label>
-              <select
-                className={`custom-dropdown glitter-border ${
-                  errors.maritalStatus ? "error" : ""
-                }`}
-                name="maritalStatus"
-                value={data.maritalStatus}
-                onChange={handleChange}
-              >
-                <option value="">Select Status</option>
-                <option value="Single">Single</option>
-                <option value="Married">Married</option>
-                <option value="Divorced">Divorced</option>
-                <option value="Widowed">Widowed</option>
-              </select>
-              {errors.maritalStatus && (
-                <span className="error-message">{errors.maritalStatus}</span>
-              )}
-            </div>
-            <div className="form-field">
-              <label>Email Address</label>
-              <input
-                type="email"
-                name="email"
-                value={data.email}
-                onChange={handleChange}
-                className={
-                  errors.email ? "error glitter-border" : "glitter-border"
-                }
-              />
-              {errors.email && (
-                <span className="error-message">{errors.email}</span>
-              )}
-            </div>
-          </div>
-
-          <div className="form-row">
-            <div className="form-field">
-              <label>Mobile Number</label>
-              <input
-                name="mobile"
-                value={data.mobile}
-                onChange={handleChange}
-                className={
-                  errors.mobile ? "error glitter-border" : "glitter-border"
-                }
-                maxLength="10"
-              />
-              {errors.mobile && (
-                <span className="error-message">{errors.mobile}</span>
-              )}
-            </div>
-            <div className="form-field">
-              <label>Card Type</label>
-              <select
-                className={`custom-dropdown glitter-border ${
-                  errors.cardType ? "error" : ""
-                }`}
-                name="cardType"
-                value={data.cardType}
-                onChange={handleChange}
-              >
-                <option value="">Select Card Type</option>
-                <option value="Breeze">Breeze Card</option>
-                <option value="Evergreen">Evergreen Card</option>
-                <option value="Ultimatum">Ultimate Card</option>
-                <option value="Platinum">Platinum Paris Edition Card</option>
-              </select>
-              {errors.cardType && (
-                <span className="error-message">{errors.cardType}</span>
-              )}
-            </div>
-          </div>
-
-          <div className="form-field full-width">
-            <label>Residential Address</label>
-            <textarea
-              name="address"
-              value={data.address}
-              onChange={handleChange}
-              className={
-                errors.address ? "error glitter-border" : "glitter-border"
-              }
+    <form className="card wide-form-card" onSubmit={handleSubmit}>
+      <h2>Customer Information Form</h2>
+      
+      <div className="form-section">
+        <div className="form-row">
+          <div className="form-field">
+            <label>Full Name</label>
+            <input 
+              name="fullName" 
+              value={data.fullName} 
+              onChange={handleChange} 
+              className={errors.fullName ? "error glitter-border" : "glitter-border"}
             />
-            {errors.address && (
-              <span className="error-message">{errors.address}</span>
-            )}
+            {errors.fullName && <span className="error-message">{errors.fullName}</span>}
           </div>
-
-          <div className="form-row">
-            <div className="form-field">
-              <label>State</label>
-              <select
-                name="state"
-                value={data.state}
-                onChange={handleChange}
-                className={`custom-dropdown glitter-border ${
-                  errors.state ? "error" : ""
-                }`}
-              >
-                <option value="">Select State</option>
-                {indianStates.map((stateName) => (
-                  <option key={stateName} value={stateName}>
-                    {stateName}
-                  </option>
-                ))}
-              </select>
-              {errors.state && (
-                <span className="error-message">{errors.state}</span>
-              )}
-            </div>
-            <div className="form-field">
-              <label>Current City</label>
-              <input
-                name="currentCity"
-                value={data.currentCity}
-                onChange={handleChange}
-                className={
-                  errors.currentCity ? "error glitter-border" : "glitter-border"
-                }
-              />
-              {errors.currentCity && (
-                <span className="error-message">{errors.currentCity}</span>
-              )}
-            </div>
-          </div>
-
-          <div className="form-field full-width">
-            <label>Current Pin Code</label>
-            <input
-              name="pinCode"
-              value={data.pinCode}
-              onChange={handleChange}
-              className={
-                errors.pinCode ? "error glitter-border" : "glitter-border"
-              }
-              maxLength="6"
+          <div className="form-field">
+            <label>Date of Birth</label>
+            <input 
+              type="date" 
+              name="dob" 
+              value={data.dob} 
+              onChange={handleChange} 
+              // className={errors.dob ? "error glitter-border" : "glitter-border"}
             />
-            {errors.pinCode && (
-              <span className="error-message">{errors.pinCode}</span>
-            )}
-          </div>
-
-          <div className="form-field full-width">
-            <label>Upload Photograph (Max 2MB)</label>
-            <div className="file-upload">
-              <input
-                type="file"
-                name="photo"
-                id="photo-upload"
-                accept="image/*"
-                onChange={handleChange}
-              />
-              <label htmlFor="photo-upload" className="file-upload-btn">
-                Choose File
-              </label>
-              <span className="file-name">
-                {data.photo ? data.photo.name : "No file chosen"}
-              </span>
-              {errors.photo && (
-                <span className="error-message">{errors.photo}</span>
-              )}
-            </div>
+            {errors.dob && <span className="error-message">{errors.dob}</span>}
           </div>
         </div>
 
-        <button
-          type="submit"
-          className={`form-submit-btn ${isFormValid ? "" : "disabled"}`}
-          disabled={!isFormValid}
-        >
-          Next
-        </button>
-      </form>
+        <div className="form-row">
+          <div className="form-field">
+            <label>Gender</label>
+            <select
+              className={`custom-dropdown glitter-border ${errors.gender ? "error" : ""}`}
+              name="gender" 
+              value={data.gender} 
+              onChange={handleChange}
+            >
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            {errors.gender && <span className="error-message">{errors.gender}</span>}
+          </div>
+          <div className="form-field">
+            <label>Father's / Mother's Name</label>
+            <input 
+              name="parentName" 
+              value={data.parentName} 
+              onChange={handleChange} 
+              className={errors.parentName ? "error glitter-border" : "glitter-border"}
+            />
+            {errors.parentName && <span className="error-message">{errors.parentName}</span>}
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-field">
+            <label>Marital Status</label>
+            <select 
+              className={`custom-dropdown glitter-border ${errors.maritalStatus ? "error" : ""}`}
+              name="maritalStatus" 
+              value={data.maritalStatus} 
+              onChange={handleChange}
+            >
+              <option value="">Select Status</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Divorced">Divorced</option>
+              <option value="Widowed">Widowed</option>
+            </select>
+            {errors.maritalStatus && <span className="error-message">{errors.maritalStatus}</span>}
+          </div>
+          <div className="form-field">
+            <label>Email Address</label>
+            <input 
+              type="email" 
+              name="email" 
+              value={data.email} 
+              onChange={handleChange} 
+              className={errors.email ? "error glitter-border" : "glitter-border"}
+            />
+            {errors.email && <span className="error-message">{errors.email}</span>}
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-field">
+            <label>Mobile Number</label>
+            <input 
+              name="mobile" 
+              value={data.mobile} 
+              onChange={handleChange} 
+              className={errors.mobile ? "error glitter-border" : "glitter-border"}
+              maxLength="10"
+            />
+            {errors.mobile && <span className="error-message">{errors.mobile}</span>}
+          </div>
+          <div className="form-field">
+            <label>Card Type</label>
+            <select
+  className={`custom-dropdown glitter-border ${errors.cardType ? "error" : ""}`}
+  name="cardType" 
+  value={data.cardType} 
+  onChange={handleChange}
+>
+  <option value="">Select Card Type</option>
+  <option value="Breeze">Breeze Card</option>
+  <option value="Evergreen">Evergreen Card</option>
+  <option value="Ultimatum">Ultimatum Card</option>
+  <option value="Platinum">Platinum Card</option>
+</select>
+            {errors.cardType && <span className="error-message">{errors.cardType}</span>}
+          </div>
+        </div>
+
+        <div className="form-field full-width">
+          <label>Residential Address</label>
+          <textarea 
+            name="address" 
+            value={data.address} 
+            onChange={handleChange} 
+            className={errors.address ? "error glitter-border" : "glitter-border"}
+          />
+          {errors.address && <span className="error-message">{errors.address}</span>}
+        </div>
+
+        <div className="form-row">
+          <div className="form-field">
+            <label>State</label>
+            <input 
+              name="state" 
+              value={data.state} 
+              onChange={handleChange} 
+              className={errors.state ? "error glitter-border" : "glitter-border"}
+            />
+            {errors.state && <span className="error-message">{errors.state}</span>}
+          </div>
+          <div className="form-field">
+            <label>Current City</label>
+            <input 
+              name="currentCity" 
+              value={data.currentCity} 
+              onChange={handleChange} 
+              className={errors.currentCity ? "error glitter-border" : "glitter-border"}
+            />
+            {errors.currentCity && <span className="error-message">{errors.currentCity}</span>}
+        </div>
+        </div>
+
+        <div className="form-field full-width">
+          <label>Current Pin Code</label>
+          <input 
+            name="pinCode" 
+            value={data.pinCode} 
+            onChange={handleChange} 
+            className={errors.pinCode ? "error glitter-border" : "glitter-border"}
+            maxLength="6"
+          />
+          {errors.pinCode && <span className="error-message">{errors.pinCode}</span>}
+        </div>
+
+        <div className="form-field full-width">
+          <label>Upload Photograph (Max 2MB)</label>
+          <div className="file-upload">
+            <input 
+              type="file" 
+              name="photo" 
+              id="photo-upload" 
+              accept="image/*" 
+              onChange={handleChange} 
+            />
+            <label htmlFor="photo-upload" className="file-upload-btn">Choose File</label>
+            <span className="file-name">{data.photo ? data.photo.name : "No file chosen"}</span>
+            {errors.photo && <span className="error-message">{errors.photo}</span>}
+          </div>
+        </div>
+      </div>
+
+      <button 
+        type="submit" 
+        className={`form-submit-btn ${isFormValid ? "" : "disabled"}`}
+        disabled={!isFormValid}
+      >
+        Next
+      </button>
+    </form>
     </div>
   );
 }
@@ -1026,16 +1083,88 @@ export default function MultiStepForm() {
     setFormData(finalData);
     setStep(3); // Go to summary step instead of alerting
   };
-  const handleConfirm = () => {
-    console.log("Submitted Data:", formData);
-    alert("Form submitted successfully!");
-    // Here you would typically send the data to your backend
-    navigate('/');
-  };
+  // const handleConfirm = () => {
+  //   console.log("Submitted Data:", formData);
+  //   alert("Form submitted successfully!");
+  //   // Here you would typically send the data to your backend
+  //   navigate('/');
+  // };
   const handleEdit = () => {
     setStep(1); // Go back to first step to edit
   };
+  
 
+
+
+
+// Add this function to convert files to base64
+// const toBase64 = file => new Promise((resolve, reject) => {
+//   const reader = new FileReader();
+//   reader.readAsDataURL(file);
+//   reader.onload = () => resolve(reader.result);
+//   reader.onerror = error => reject(error);
+// });
+
+// Update the handleConfirm function
+const handleConfirm = async () => {
+  try {
+    // Create FormData object (renamed to avoid conflict with state)
+    const submitFormData = new FormData();
+    
+    // Append all text fields
+    submitFormData.append('fullName', formData.fullName);
+    submitFormData.append('dob', formData.dob);
+    submitFormData.append('gender', formData.gender);
+    submitFormData.append('parentName', formData.parentName);
+    submitFormData.append('maritalStatus', formData.maritalStatus);
+    submitFormData.append('email', formData.email);
+    submitFormData.append('mobile', formData.mobile);
+    submitFormData.append('cardType', formData.cardType);
+    submitFormData.append('address', formData.address);
+    submitFormData.append('state', formData.state);
+    submitFormData.append('currentCity', formData.currentCity);
+    submitFormData.append('pinCode', formData.pinCode);
+    submitFormData.append('panNumber', formData.panNumber);
+    submitFormData.append('aadhaarNumber', formData.aadhaarNumber);
+    submitFormData.append('dlNumber', formData.dlNumber || '');
+    submitFormData.append('employmentType', formData.employmentType);
+    submitFormData.append('annualIncome', formData.annualIncome);
+    submitFormData.append('companyName', formData.companyName || '');
+    
+    // Append files
+    submitFormData.append('photo', formData.photo);
+    submitFormData.append('panFile', formData.panFile);
+    submitFormData.append('aadhaarFile', formData.aadhaarFile);
+    
+    if (formData.dlFile) {
+      submitFormData.append('dlFile', formData.dlFile);
+    }
+    
+    if (formData.additionalDocs) {
+      submitFormData.append('additionalDocs', formData.additionalDocs);
+    }
+    
+    // Send data to backend
+    const response = await fetch('http://localhost:8080/api/forms', {
+      method: 'POST',
+      body: submitFormData,
+    });
+    
+    if (response.ok) {
+      const result = await response.json();
+      console.log('Success:', result);
+      alert('Form submitted successfully!');
+      navigate('/');
+    } else {
+      const errorText = await response.text();
+      console.error('Error:', response.status, errorText);
+      alert('Failed to submit form. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('An error occurred while submitting the form.');
+  }
+};
    return (
     <div className="multi-step-form">
       {/* <StandardCharteredNavbar toggleTheme={toggleTheme} currentTheme={theme} /> */}

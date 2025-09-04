@@ -5,9 +5,6 @@
   },
   "agent": {
     "username": "12345",
-    "password": "12345",
-
-    "username": "23456",
-    "password": "23456"
+    "password": "12345"
   }
 }
