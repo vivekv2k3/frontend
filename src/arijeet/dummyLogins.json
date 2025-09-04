@@ -1,0 +1,10 @@
+{
+  "customer": {
+    "username": "demo@example.com",
+    "password": "12345"
+  },
+  "agent": {
+    "username": "12345",
+    "password": "12345"
+  }
+}

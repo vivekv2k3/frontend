@@ -1,0 +1,87 @@
+
+
+@font-face {
+  font-family: "SCProsperSans";
+  src: url("../SCProsperSansRegular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.homepage {
+  --bg-start:#02101a;
+  --bg-end:#071226;
+  --page-bg: linear-gradient(180deg,var(--bg-start),var(--bg-end));
+  --text:#e8f1fb;
+  --muted:#96a8b8;
+  --card-bg: rgba(255,255,255,0.03);
+  --glass: rgba(255,255,255,0.02);
+  --input-bg: rgba(255,255,255,0.02);
+  --placeholder: rgba(232,241,251,0.45);
+  --danger:#ff6b6b;
+  --success:#10b981;
+  --radius:12px;
+
+  --btn-height:40px;
+  --btn-font:14px;
+  --font-family: "SCProsperSans", "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.homepage body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: var(--font-family);
+}
+
+.homepage .glow-btn {
+  color: #000000;
+  transition: color 0.3s;
+}
+.homepage .glow-btn:hover {
+  color: #00ff99;
+}
+
+.homepage .card-pop {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.7s cubic-bezier(.4,2,.6,1), transform 0.7s cubic-bezier(.4,2,.6,1);
+}
+.homepage .card-pop.card-pop-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* Carousel container */
+.homepage .carousel-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Carousel card */
+.homepage .carousel-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Active card */
+.homepage .carousel-card.active {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+/* Previous card (for smooth exit) */
+.homepage .carousel-card.previous {
+  opacity: 0;
+  transform: translateX(-100%);
+  z-index: 1;
+}

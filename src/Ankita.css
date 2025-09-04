@@ -1,0 +1,32 @@
+:root {
+  --bg-start:#02101a;
+  --bg-end:#071226;
+  --page-bg: linear-gradient(180deg,var(--bg-start),var(--bg-end));
+  --text:#e8f1fb;
+  --muted:#96a8b8;
+  --card-bg: rgba(255,255,255,0.03);
+  --glass: rgba(255,255,255,0.02);
+  --input-bg: rgba(255,255,255,0.02);
+  --placeholder: rgba(232,241,251,0.45);
+  --danger:#ff6b6b;
+  --success:#10b981;
+  --radius:12px;
+
+  --btn-height:40px;
+  --btn-font:14px;
+
+  --font-family: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  
+}
+ body {
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: "SCProsperSans", var(--font-family);
+  margin: 0;
+}
+@font-face {
+  font-family: "SCProsperSans";
+  src: url("SCProsperSansRegular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}

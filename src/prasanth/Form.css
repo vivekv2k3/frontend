@@ -1,0 +1,404 @@
+/* ===== FONT DEFINITIONS ===== */
+@font-face {
+  font-family: 'SC Prosper Sans';
+  src: url('../SCProsperSansRegular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ===== CSS VARIABLES & THEMING ===== */
+.multi-step-form {
+  /* Dark theme tokens (default) */
+  --page-bg: var(--bg-end);
+  --bg-start: #071226;
+  --bg-end: #071226;
+  --text: #e8f1fb;
+  --muted: #96a8b8;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --glass: rgba(255, 255, 255, 0.02);
+  --input-bg: rgba(255, 255, 255, 0.02);
+  --placeholder: rgba(232, 241, 251, 0.45);
+  --danger: #ff6b6b;
+  --success: #10b981;
+  --radius: 12px;
+  --btn-height: 40px;
+  --btn-font: 14px;
+  --font-family: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+/* ADD THIS NEW RULE */
+.multi-step-form .app {
+  margin-top: -140px; 
+}
+
+.multi-step-form body.light {
+  --page-bg: var(--bg-end);
+  --bg-start: #f3f6fb;
+  --bg-end: #f3f6fb;
+  --text: #072036;
+  --muted: #586675;
+  --card-bg: rgba(2, 6, 23, 0.02);
+  --glass: rgba(2, 6, 23, 0.02);
+  --input-bg: #ffffff;
+  --placeholder: rgba(7, 32, 54, 0.35);
+}
+
+/* ===== BASE STYLES ===== */
+.multi-step-form body {
+  margin: 0;
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--page-bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.multi-step-form code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* ===== COMPONENT STYLES ===== */
+
+/* Card Styles */
+.multi-step-form .card {
+  width : 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 50px;
+  /* Increased horizontal padding */
+  background: var(--card-bg);
+  border-radius: var(--radius);
+}
+
+.multi-step-form .card h2 {
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+/* Form Structure */
+.multi-step-form .form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 30px;
+
+}
+
+.multi-step-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 90px;
+  /* Increased gap between form fields */
+}
+
+.multi-step-form .form-field {
+  margin-bottom: 20px;
+
+
+}
+
+.multi-step-form .form-field input {
+  width: calc(100% - 24px);
+  max-width: 100%;
+}
+
+.multi-step-form .form-field.full-width {
+  grid-column: span 2;
+}
+
+/* Form Elements */
+.multi-step-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.multi-step-form input,
+.multi-step-form select,
+.multi-step-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  background: var(--input-bg);
+  color: var(--text);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.multi-step-form input::placeholder,
+.multi-step-form textarea::placeholder {
+  color: var(--placeholder);
+}
+
+.multi-step-form textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+/* Glittery Border Effect */
+.multi-step-form .glitter-border {
+  position: relative;
+  border: 1px solid transparent !important;
+  background-clip: padding-box;
+}
+
+.multi-step-form .glitter-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg,
+      #ff6b6b, #feca57, #48dbfb, #ff9ff3,
+      #00d2d3, #54a0ff, #5f27cd, #00d2d3,
+      #ff6b6b, #feca57);
+  background-size: 400% 400%;
+  border-radius: calc(var(--radius) + 2px);
+  z-index: -1;
+  animation: glitter 3s ease infinite;
+}
+
+@keyframes glitter {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Custom Dropdown Styling */
+.multi-step-form .custom-dropdown {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: var(--input-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2396a8b8' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E") no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  padding-right: 32px;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
+
+.multi-step-form .custom-dropdown:focus {
+  outline: none;
+  border-color: var(--success);
+}
+
+/* Dropdown options styling */
+.multi-step-form .custom-dropdown option {
+  background: black;
+  color: white;
+  padding: 8px;
+}
+
+/* Fix for Firefox dropdown options */
+@-moz-document url-prefix() {
+  .multi-step-form .custom-dropdown {
+    color: var(--text) !important;
+    text-shadow: 0 0 0 var(--text);
+  }
+
+  .multi-step-form .custom-dropdown option {
+    background: var(--card-bg);
+  }
+}
+
+/* File Upload */
+.multi-step-form .file-upload {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.multi-step-form .file-upload-btn {
+  padding: 10px 15px;
+  background: var(--glass);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s;
+  border: #071226 1px solid;
+}
+
+.multi-step-form .file-upload-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border: #071226 2px solid;
+}
+
+.multi-step-form .file-name {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.multi-step-form input[type="file"] {
+  display: none;
+}
+
+/* Checkbox */
+.multi-step-form .form-checkbox {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.multi-step-form .form-checkbox input {
+  width: auto;
+  margin-right: 10px;
+}
+
+/* Buttons */
+.multi-step-form .form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.multi-step-form .form-submit-btn,
+.multi-step-form .form-back-btn {
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: var(--btn-font);
+  transition: all 0.3s ease;
+}
+
+.multi-step-form .form-submit-btn {
+  background: var(--success);
+  color: white;
+  border: none;
+}
+
+.multi-step-form .form-submit-btn:hover {
+  background: #0ea371;
+  transform: translateY(-1px);
+}
+
+.multi-step-form .form-submit-btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: rgba(16, 185, 129, 0.3);
+}
+
+.multi-step-form .form-submit-btn.disabled:hover {
+  background: rgba(16, 185, 129, 0.3);
+  transform: none;
+}
+
+.multi-step-form .form-back-btn {
+  background: var(--glass);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Progress Bar */
+.multi-step-form .progress-bar-container {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.multi-step-form .progress-bar {
+  height: 100%;
+  background-color: var(--success);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.multi-step-form .step-indicator {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+  .multi-step-form .form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .multi-step-form .form-field.full-width {
+    grid-column: span 1;
+  }
+
+  .multi-step-form .form-navigation {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .multi-step-form .form-submit-btn,
+  .multi-step-form .form-back-btn {
+    width: 100%;
+  }
+
+  .multi-step-form .card {
+    padding: 20px;
+    /* Adjust padding for mobile */
+  }
+}
+
+
+
+
+/* Add these styles to your existing CSS file */
+
+/* Summary Section Styles */
+.multi-step-form .summary-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.multi-step-form .summary-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.multi-step-form .summary-column h3 {
+  color: var(--success);
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--muted);
+  padding-bottom: 5px;
+}
+
+.multi-step-form .summary-item {
+  padding: 12px;
+  background: var(--glass);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.multi-step-form .summary-item strong {
+  color: var(--muted);
+  display: block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments for summary */
+@media (max-width: 768px) {
+  .multi-step-form .summary-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

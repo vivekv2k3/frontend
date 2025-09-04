@@ -1,0 +1,535 @@
+@font-face  {
+  font-family: "SCProsperSans";
+  src: url("../SCProsperSansRegular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+.agent-portal {
+  /* ...all your other styles and CSS variables... */
+  --page-bg: #f0f2f5; /* This is the light blue/grey color */
+  
+  /* Apply the background color here */
+  background-color: var(--page-bg);
+
+  /* --- ADD THIS LINE --- */
+  min-height: 100vh; 
+}
+/* src/Customers.js */
+
+/* ... (inside the CSS block) */
+.agent-portal .action-delete {
+  /* Notice the space here */
+  background: transparent;
+  color: var(--danger);
+  /* Set text color to white for contrast */
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  /* Remove the border */
+}
+
+/* Optional: Add a hover state for better user experience */
+.agent-portal .action-delete:hover {
+  filter: brightness(1.1);
+}
+
+/* ... */
+.agent-portal {
+  --sc-blue: #0072CE;
+  --sc-green: #00A862;
+  --bg-start: #02101a;
+  --bg-end: #071226;
+  --page-bg: linear-gradient(180deg, var(--bg-start), var(--bg-end));
+  --text: #e8f1fb;
+  --muted: #96a8b8;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --glass: rgba(255, 255, 255, 0.02);
+  --input-bg: rgba(255, 255, 255, 0.02);
+  --placeholder: rgba(232, 241, 251, 0.45);
+  --danger: #ff6b6b;
+  --success: #10b981;
+  --radius: 12px;
+  --btn-height: 40px;
+  --btn-font: 14px;
+  --font-family: "SCProsperSans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.agent-portal body.light {
+  --bg-start: #ffffff;
+  --bg-end: #f3f6fb;
+  --page-bg: linear-gradient(180deg, var(--bg-start), var(--bg-end));
+  --text: #072036;
+  --muted: #586675;
+  --card-bg: rgba(2, 6, 23, 0.02);
+  --glass: rgba(2, 6, 23, 0.02);
+  --input-bg: #ffffff;
+  --placeholder: rgba(7, 32, 54, 0.35);
+}
+/* --- FIX FOR ALL LIGHT THEME BORDERS --- */
+
+.agent-portal body.light .card,
+.agent-portal body.light .sidebar .card,
+.agent-portal body.light .modal-card {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 20px rgba(100, 100, 100, 0.1);
+}
+
+.agent-portal body.light .action-reject,
+.agent-portal body.light .action-detail,
+.agent-portal body.light .btn.ghost {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.agent-portal body.light .tag,
+.agent-portal body.light .pill {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.agent-portal body.light .f-input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--input-bg);
+}
+
+.agent-portal body.light .searchbox {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.agent-portal body.light td {
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+}
+/* --- FIX FOR ALL LIGHT THEME BORDERS --- */
+
+.agent-portal body.light .card {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 20px rgba(100, 100, 100, 0.1);
+}
+
+.agent-portal body.light .f-input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--input-bg);
+}
+.agent-portal body.light .modal-card .muted {
+  color: #1e293b; /* Makes labels visible in light mode */
+}
+
+.agent-portal *, .agent-portal *::before,.agent-portal *::after {
+  box-sizing: border-box;
+}
+
+.agent-portal body {
+  font-family: var(--font-family);
+  background: var(--page-bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* --- CHANGE 3: Updated layout styles --- */
+/* The old .wrap grid layout has been removed */
+.agent-portal .app-container {
+  padding-top: 110px; /* This is crucial! It prevents content from hiding under the fixed navbar */
+}
+
+.agent-portal .main {
+  padding: 18px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* The old .sidebar styles have been removed */
+
+.agent-portal .brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.agent-portal .brand img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: transparent;
+}
+.agent-portal .brand h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+.agent-portal .brand p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.agent-portal .nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.agent-portal .nav button {
+  background: transparent;
+  border: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-align: left;
+  color: var(--muted);
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+.agent-portal .nav button.active {
+  color: var(--sc-green);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.01);
+}
+
+.agent-portal .btn {
+  height: var(--btn-height);
+  font-size: var(--btn-font);
+  padding: 0 14px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--sc-blue), var(--sc-green));
+  color: #fff;
+}
+.agent-portal .btn.ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.agent-portal .action-btn {
+  height: var(--btn-height);
+  min-width: 86px;
+  padding: 0 10px;
+  font-size: 13px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.agent-portal .action-approve {
+  background: linear-gradient(90deg, var(--success), #06b6d4);
+  color: #042025;
+  border: 0;
+}
+.agent-portal .action-reject {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.agent-portal .action-detail {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.agent-portal .topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+.agent-portal .page-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+.agent-portal .subtle {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.agent-portal .kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.agent-portal .card {
+  background: var(--card-bg);
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 6px 20px rgba(2, 6, 23, 0.25);
+}
+.agent-portal .kpi .label {
+  font-size: 12px;
+  color: var(--muted);
+}
+.agent-portal .kpi .value {
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 6px;
+}
+
+.agent-portal .content-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 16px;
+}
+.agent-portal .inbox-table {
+  overflow: auto;
+}
+.agent-portal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.agent-portal th {
+  color: var(--muted);
+  text-align: left;
+  padding: 10px 8px;
+  font-size: 12px;
+  position: sticky;
+  top: 0;
+  background: var(--card-bg);
+  z-index: 1;
+}
+.agent-portal td {
+  padding: 12px 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.02);
+}
+.agent-portal .row-hover:hover {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
+}
+
+.agent-portal .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #e0eef8, #ddefee);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #072036;
+  font-weight: 800;
+  margin-right: 10px;
+}
+
+.agent-portal .tag {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  margin-right: 6px;
+  display: inline-block;
+}
+
+.agent-portal .filter-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.agent-portal .f-input {
+  --f-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: var(--f-radius);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 160px;
+}
+.agent-portal .f-input select, .agent-portal .f-input input[type="date"], .agent-portal .f-input input {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--text);
+  font-size: 14px;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.agent-portal .f-input input[type="date"] {
+  color-scheme: dark;
+}
+.agent-portal body.light .f-input input[type="date"] {
+  color-scheme: light;
+}
+.agent-portal .f-input.select {
+  position: relative;
+}
+/* First, remove the old CSS rules with the background-image Data URLs. */
+/* Then, add these new rules. */
+
+.agent-portal .f-input.select::after {
+  content: ''; /* Required for a pseudo-element to appear */
+  position: absolute;
+  right: 12px;
+  top: 45%; /* Center vertically */
+  
+  /* The "trick": Create a zero-size box and use borders to make a shape */
+  width: 0; 
+  height: 0; 
+
+  /* Make the side borders invisible */
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  
+  /* The top border becomes the visible down-arrow */
+  border-top: 7px solid rgba(255, 255, 255, 0.7);
+
+  pointer-events: none; /* Allows clicks to go through to the select box */
+  transform: translateY(-50%);
+}
+
+/* For light mode, just change the border color */
+.agent-portal body.light .f-input.select::after {
+    border-top-color: rgba(7, 32, 54, 0.7);
+}
+
+.agent-portal .searchbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--input-bg);
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  min-width: 280px;
+}
+.agent-portal .searchbox input {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--text);
+  font-size: 14px;
+  width: 100%;
+}
+.agent-portal .searchbox input::placeholder {
+  color: var(--placeholder);
+}
+
+.agent-portal .report-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.agent-portal .overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 120;
+  pointer-events: none;
+  opacity: 0;
+  transition: all .18s ease;
+  padding: 120px 20px 20px 20px;
+}
+.agent-portal .overlay.open {
+  pointer-events: auto;
+  opacity: 1;
+  background: rgba(2, 6, 23, 0.45);
+  backdrop-filter: blur(10px);
+}
+.agent-portal .modal-card {
+  width: 420px;
+  max-width: 92%;
+  background: var(--card-bg);
+  color: var(--text);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 12px 40px rgba(2, 6, 23, 0.6);
+  transform: translateY(6px);
+  transition: all .18s ease;
+  opacity: 0;
+  max-height: 100%;    /* <-- ADD THIS LINE */
+  overflow-y: auto; 
+  
+}
+.agent-portal .overlay.open .modal-card {
+  transform: none;
+  opacity: 1;
+}
+.agent-portal .modal-card h3 {
+  margin-top: 0;
+}
+.agent-portal .close-x {
+  float: right;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.agent-portal .muted {
+  color: var(--muted);
+}
+.agent-portal .small {
+  font-size: 12px;
+}
+.agent-portal .pill {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+  font-weight: 700;
+  display: inline-block;
+}
+
+.agent-portal .fade {
+  animation: fadeIn .22s ease both;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+};
+
+/* --- FIX FOR BROWSER AUTOFILL BACKGROUND --- */
+
+.agent-portal input:-webkit-autofill,
+.agent-portal input:-webkit-autofill:hover, 
+.agent-portal input:-webkit-autofill:focus, 
+.agent-portal input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--text) !important;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+    background-color: transparent !important;
+}
+
+/* This part ensures the text color is correct in light mode */
+.agent-portal body.light input:-webkit-autofill {
+    -webkit-text-fill-color: var(--text) !important;
+}
+/* Add this new rule to your CSS block */
+.agent-portal .btn.danger {
+  background: var(--danger);
+  color: #fff;
+  border: 0;
+  /* Overrides the border from the .ghost class */
+}
+
+/* Optional: Add a nice hover effect */
+.agent-portal .btn.danger:hover {
+  filter: brightness(1.1);
+}
